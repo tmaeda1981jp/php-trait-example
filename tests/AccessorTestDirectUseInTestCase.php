@@ -1,31 +1,19 @@
 <?php namespace Smilecode;
 
-class AccessorImpl
+class AccessorTest extends \PHPUnit_Framework_TestCase
 {
     use Accessor;
 
     private $firstName;
     private $age;
-}
-
-class AccessorTest extends \PHPUnit_Framework_TestCase
-{
-    /**
-     * @before
-     */
-    public function before()
-    {
-        $this->sut = new AccessorImpl();
-    }
 
     /**
      * @test
      */
     public function setFirstNameでfirstNameプロパティに値を設定できること()
     {
-        $this->sut->setFirstName('Takashi');
-        $this->assertAttributeEquals('Takashi', 'firstName', $this->sut);
-        //$this->assertTrue(method_exists($this->sut, 'setFirstName'));
+        $this->setFirstName('Takashi');
+        $this->assertEquals('Takashi', $this->firstName);
     }
 
     /**
@@ -33,8 +21,8 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function getFirstNameでfirstNameプロパティの値が取得できること()
     {
-        $this->sut->setFirstName('Takashi');
-        $this->assertEquals('Takashi', $this->sut->getFirstName());
+        $this->setFirstName('Takashi');
+        $this->assertEquals('Takashi', $this->getFirstName());
     }
 
     /**
@@ -42,8 +30,8 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function setAgeでageプロパティに値を設定できること()
     {
-        $this->sut->setAge(34);
-        $this->assertAttributeEquals(34, 'age', $this->sut);
+        $this->setAge(34);
+        $this->assertEquals(34, $this->age);
     }
 
     /**
@@ -51,8 +39,8 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function getAgeでageプロパティの値が取得できること()
     {
-        $this->sut->setAge(34);
-        $this->assertEquals(34, $this->sut->getAge());
+        $this->setAge(34);
+        $this->assertEquals(34, $this->getAge());
     }
 
     /**
@@ -61,7 +49,7 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function setAgeに引数を設定しない場合にはInvalidArgumentExceptionが送出されること()
     {
-        $this->sut->setAge();
+        $this->setAge();
     }
 
     /**
@@ -70,7 +58,7 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function setAgeに2つの引数を設定するとInvalidArgumentExceptionが送出されること()
     {
-        $this->sut->setAge(34, 1);
+        $this->setAge(34, 1);
     }
 
     /**
@@ -79,7 +67,7 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function setAddressメソッドの呼び出しでBadMethodCallExceptionが送出されること()
     {
-        $this->sut->setAddress('test');
+        $this->setAddress('test');
     }
 
     /**
@@ -88,7 +76,8 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function hogeメソッドの呼び出しでBadMethodCallExceptionが送出されること()
     {
-        $this->sut->hoge();
+        $this->hoge();
     }
 }
+
 
