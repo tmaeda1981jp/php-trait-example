@@ -77,9 +77,18 @@ class AccessorTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException BadMethodCallException
      */
-    public function setAddressでBadMethodCallExceptionが送出されること()
+    public function setAddressメソッドの呼び出しでBadMethodCallExceptionが送出されること()
     {
         $this->sut->setAddress('test');
+    }
+
+    /**
+     * @test
+     * @expectedException BadMethodCallException
+     */
+    public function hogeメソッドの呼び出しでBadMethodCallExceptionが送出されること()
+    {
+        $this->sut->hoge();
     }
 }
 
